@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified User</title>
+    <!-- Add any necessary CSS stylesheets here -->
+    <style>
+        /* Define your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .verified-logo {
+            width: 100px;
+            height: auto;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>You are verified</h2>
+        <img class="verified-logo" src="verified_logo.png" alt="Verified Logo">
+        <button class="button" onclick="openCamera()">Open Camera</button>
+    </div>
+
+    <!-- Add any necessary JavaScript scripts here -->
+    <script>
+        function openCamera() {
+            // Request access to the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                // Success callback - stream is the camera feed
+                console.log('Camera access granted');
+
+                // Optional: You can display the camera feed in a video element
+                var video = document.createElement('video');
+                video.srcObject = stream;
+                video.autoplay = true;
+                document.body.appendChild(video);
+            })
+            .catch(function(error) {
+                // Error callback
+                console.error('Camera access denied', error);
+            });
+        }
+    </script>
+</body>
+</html>
